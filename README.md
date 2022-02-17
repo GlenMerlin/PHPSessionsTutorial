@@ -96,3 +96,36 @@ Now a question you might have is: "if we have GET requests why do we need POST? 
 They are different in a small but significant way. The main difference is that because GET requests are put inside the address bar, they can be bookmarked in your browser. However POST requests send the information without showing it in the address bar. This is extremely useful if you want to pass data to the server without the user able to see it or bookmark it.
 
 If you were passing a username and password to the server you wouldn't want that to show up in the address bar where it could be seen in the browser history and couldn't be bookmarked.
+
+---
+So lets play around with Sessions a bit more. Lets make a new page called `tasks.php`.
+```php
+<?php 
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PHP Sessions are Cool!</title>
+</head>
+<body>
+    <h1>Welcome <?php echo $_SESSION['name']?></h1>
+    <h3>Tasks</h3>
+    <p>Lets add some tasks!</p>
+    <form action="add_task.php" method="get">
+        <input type="number" name="amount" required/>
+        <button class="submit-button">Submit</button>
+    </form>
+</body>
+</html>
+```
+and a script page called add_task.php
+```php
+<?php
+session_start();
+$_SESSION['tasks'] += $_GET['amount'];
+header('location: tasks.php');
+?>
+```
+This should produce a new site that has the name of the person at the top along with a form they can fill out. 

@@ -11,7 +11,14 @@ session_start();
 </head>
 <body>
     <h1>Hello World!</h1>
-    <p>Welcome <?php echo $_SESSION['name']; ?></p>
+    <p>Welcome 
+    <?php 
+        echo $_SESSION['name']; 
+        if ($_SESSION['tasks']){
+            echo " you have {$_SESSION['tasks']} tasks!"; 
+        }
+    ?>
+    </p>
     <form action="name_process.php" method="post">
         <input type="text" name="name" required/>
         <button class="login-button">Submit</button>
