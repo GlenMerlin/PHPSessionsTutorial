@@ -128,4 +128,22 @@ $_SESSION['tasks'] += $_GET['amount'];
 header('location: tasks.php');
 ?>
 ```
-This should produce a new site that has the name of the person at the top along with a form they can fill out. 
+This should produce a new site that has the name of the person at the top along with a form the user can fill out. The form contains a number selector and then uses a GET request to send the information to our add_task.php file. The add_task.php file goes through and adds the new amount to the tasks session variable.
+
+Lets add some code to our index.php to make it display a message and make this useful.
+
+```php
+<p>Welcome 
+    <?php 
+        echo $_SESSION['name']; 
+        if ($_SESSION['tasks']){
+            echo " you have {$_SESSION['tasks']} tasks!"; 
+        }
+    ?>
+</p>
+```
+This checks if there is anything in the tasks variable inside the PHP session. if there are, it adds "you have `x` amount of tasks". For example, if John Doe enters his name, and then adds 100 tasks using our forms. The index.php page will read
+
+"Welcome John Doe, you have 100 tasks".
+
+As you can probably see, Sessions apply to your entire website and can be accessed on any page. So what is our next logical step? Lets see how to remove a session variable or simply delete everything.
