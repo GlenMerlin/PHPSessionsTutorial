@@ -1,7 +1,19 @@
 # Setting up PHP Sessions
-PHP sessions are something you've probably used frequently without realizing it, PHP sessions are used on many websites for storing variables and managing user sessions. At the end of this tutorial you will be able to use php sessions successfully in your website
+PHP is a very common programming language, PHP stands for "Personal Home Page" but because it has expanded to power huge sites like Wikipedia and Facebook many refer to it as "Hypertext PreProcessor". PHP sessions are something you've probably used frequently without realizing it, PHP sessions are used on many websites for storing variables and managing user sessions. At the end of this tutorial you will be able to use PHP sessions successfully in your website
 
-# Tools used
+# Table of Contents
+Know what you're looking for? Use the links below to jump to a specific topic!
+
+Creating Sessions
+
+Using Session Variables
+
+GET vs. POST requests
+
+Deleting Sessions
+<!-- TODO: Make these actual links-->
+
+# Tools Used
 - Visual Studio Code
 - HTML
 - PHP
@@ -9,7 +21,7 @@ PHP sessions are something you've probably used frequently without realizing it,
 - Your Browser of Choice
 
 # First Steps
-To get started with sessions we first need to create a php file. If you have an existing website you can simply change the file extension from .html to .php. I'm going to start off by creating a basic PHP document called index.php. Inside this php document I'll put some placeholder HTML like so:
+To get started with sessions, we first need to create a PHP file. If you have an existing website, you can simply change the file extension from .html to .php. This tells the website server that there is code it needs to run inside this file before sending it too the user. I'm going to start off by creating a basic PHP document called index.php. Inside this PHP document I'll put some placeholder HTML like so:
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +35,9 @@ To get started with sessions we first need to create a php file. If you have an 
 </body>
 </html>
 ```
-This gives me a pretty blank page with just a header of "Hello World!" and a pargraph that just says "Welcome".
+This gives me a pretty blank page with just a header of "Hello World!" and a paragraph that just says "Welcome".
 
-Lets add some real php code to this page, I'm going to add a form and an external php page to process the data so my index.php file now looks like
+Let's add some real PHP code to this page. I'm going to add a form under the "Welcome" paragraph and an external PHP page to process the data so my index.php file now looks like:
 
 ```html
 <form action="name_process.php" method="get">
@@ -34,21 +46,24 @@ Lets add some real php code to this page, I'm going to add a form and an externa
 </form>
 ```
 This form in my index.php file should accept the user's input from the textbox, and then pass the data over to name_process.php
+# Using Session Variables:
+How do we do this you might ask? It's pretty easy, we just need to use HTTP requests. HTTP (hypertext transfer protocol) has two main functions we'll use. First is a GET request, then I'll show you how to do the same thing with a POST request.
 
-How do we do this you might ask? It's pretty easy, we just need to use HTTP requests. HTTP (hyper text transfer protocol) has two main functions we'll use. First is a GET request, then I'll show you how to do the same thing with a POST request.
-
-You've likely seen a GET request before without realizing what it is. For example Google Search.
+You've likely seen a GET request before without realizing what it is. For example Google Search:
 
 ![google search for "what is the weather"](/images/googleSearch.png)
 
-This is a GET request to google. It's composed of
+This is a GET request to Google. It's composed of:
+
 The site we want to visit: https://www.google.com/
+
 The page we're on: /search
+
 Then the information we typed into our search bar: ?q=what+is+the+weather+today
 
-GET information is shown as a `?` then a variable that stores the user information (in this case Google uses q for query), then `=the information we want to pass`
+GET information is formatted with a `?` then a variable that stores the user information (in this case Google uses q for query), then `=the information we want to pass`
 
-lets take a look at name_process.php
+let's take a look at name_process.php:
 ```php
 <?php 
 session_start();
@@ -58,16 +73,16 @@ header("location: index.php")
 
 ?>
 ```
-This code is extremely simple, `$_SESSION['name']` creates a session variable called 'stored-name' and sets it equal to the form information pulled from `$_GET` we want the name field's information so `$_SESSION['name']` gets the information from 
+This code is extremely simple. `$_SESSION['name']` creates a session variable called 'stored-name' and sets it equal to the form information pulled from `$_GET` we want the name field's information so `$_SESSION['name']` gets the information from 
 ```html
 <input type="text" name="name" required/>
 ```
-after that header simply redirects the user back to index.php after that session has been created.
+On the next line, `header` simply redirects the user back to index.php after that session has been created.
 
-here's what the page looks like currently.
+Here's what the page looks like currently:
 ![an image of a blank website with an empty form](/images/1.png)
 
-Now we can edit index.php to actually be able to use the session variable that we created
+Now we can edit index.php to actually be able to use the session variable that we created:
 ```php
 <?php 
 session_start();
@@ -80,25 +95,25 @@ session_start();
 `session_start();` will tell the page that there we want to use session variables on this page
 > note: `session_start()` ***MUST*** be at the top of the page or the sessions variables will not load properly
 
-Next I'll add some php code to handle editing our welcome message to greet the person
+Next I'll add some PHP code to handle editing our welcome message to greet the person:
 
 ```php
 <p>Welcome <?php echo $_SESSION['name']; ?></p>
 ```
-Now when the user enters something into the field the page displays
+Now when the user enters something into the field the page displays:
 
 ![an image of our welcome text now displaying welcome John Doe](/images/2.png)
 
---- 
 
-Now a question you might have is: "if we have GET requests why do we need POST? Are they any different?"
+# GET vs. POST requests:
+Now a question you might ask is: "if we have GET requests why do we need POST? Are they any different?"
 
 They are different in a small but significant way. The main difference is that because GET requests are put inside the address bar, they can be bookmarked in your browser. However POST requests send the information without showing it in the address bar. This is extremely useful if you want to pass data to the server without the user able to see it or bookmark it.
 
 If you were passing a username and password to the server you wouldn't want that to show up in the address bar where it could be seen in the browser history and couldn't be bookmarked.
 
 ---
-So lets play around with Sessions a bit more. Lets make a new page called `tasks.php`.
+So let's play around with sessions a bit more. Let's make a new page called `tasks.php`:
 ```php
 <?php 
 session_start();
@@ -120,7 +135,7 @@ session_start();
 </body>
 </html>
 ```
-and a script page called add_task.php
+And a script page called add_task.php:
 ```php
 <?php
 session_start();
@@ -130,7 +145,7 @@ header('location: tasks.php');
 ```
 This should produce a new site that has the name of the person at the top along with a form the user can fill out. The form contains a number selector and then uses a GET request to send the information to our add_task.php file. The add_task.php file goes through and adds the new amount to the tasks session variable.
 
-Lets add some code to our index.php to make it display a message and make this useful.
+Let's add some code to our index.php to make it display a message and make this useful:
 
 ```php
 <p>Welcome 
@@ -142,8 +157,10 @@ Lets add some code to our index.php to make it display a message and make this u
     ?>
 </p>
 ```
-This checks if there is anything in the tasks variable inside the PHP session. if there are, it adds "you have `x` amount of tasks". For example, if John Doe enters his name, and then adds 100 tasks using our forms. The index.php page will read
+This checks if there is anything in the tasks variable inside the PHP session. If there are, it adds "you have `x` amount of tasks". For example, if John Doe enters his name, and then adds 100 tasks using our forms, the index.php page will read:
 
-"Welcome John Doe, you have 100 tasks".
+"Welcome John Doe, you have 100 tasks."
 
-As you can probably see, Sessions apply to your entire website and can be accessed on any page. So what is our next logical step? Lets see how to remove a session variable or simply delete everything.
+As you can probably see, sessions apply to your entire website and can be accessed on any page. So what is our next logical step? Lets see how to remove a session variable or simply delete everything.
+
+# Deleting PHP Sessions:
