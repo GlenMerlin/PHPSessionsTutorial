@@ -178,9 +178,9 @@ As you can probably see, sessions apply to your entire website and can be access
 First thing you need to know about PHP sessions is that they have a default TTL (Time to Live) of about 30 Minutes. So if you don't want the user to be able to do something to destroy their session you can just have their session expire naturally.
 > sessions also expire when the user closes their web browser
 
-With that out of the way lets get started on the last file we need to complete this tutorial.
+With that out of the way let's get started on the last file we need to complete this tutorial.
 
-Lets set up a page where our user can ask to be forgotten. Let's make a page called `forget_me.php`:
+Let's set up a page where our user can ask to be forgotten. Let's make a page called `forget_me.php`:
 
 ```html
 <!-- forget_me.php -->
@@ -196,7 +196,9 @@ Lets set up a page where our user can ask to be forgotten. Let's make a page cal
 </form>
 </body>
 ```
+
 And the final page we need to make is `forget_process.php`:
+
 ```php
 //forget_process.php
 <?php 
@@ -206,7 +208,7 @@ unset($_SESSION['tasks']);
 header('location: index.php');
 ?>
 ```
-Now the user should be able to click the "forget me!" button and have all their tasks erased. This doesn't delete everything though so lets do that. To accomplish this we just need to change `unset($_SESSION['tasks']);` to `session_destroy();`
+Now the user should be able to click the "forget me!" button and have all their tasks erased. This doesn't delete everything though; so let's do that. To accomplish this we just need to change `unset($_SESSION['tasks']);` to `session_destroy();`. `unset`erases the value of one variable. `session_destroy` will delete all of the variable you have set.
 
 ```php
 // forget_process.php
@@ -217,7 +219,7 @@ session_destroy();
 header('location: index.php');
 ?>
 ```
-Now clicking the button should take the user back to index.php and return the site to it's default state.
+Now clicking the button should take the user back to index.php and return the site to its default state.
 
 Congrats on making it to the end of the tutorial! If you want to learn more about PHP and PHP sessions here are some additional resources that can help!
 
