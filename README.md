@@ -23,7 +23,7 @@ Know what you're looking for? Use the links below to jump to a specific topic!
 - Your Browser of Choice
 
 # First Steps
-To get started with sessions, we first need to create a PHP file. If you have an existing website, you can simply change the file extension from .html to .php. This tells the website server that there is code it needs to run inside this file before sending it too the user. I'm going to start off by creating a basic PHP document called `index.php`. Inside this PHP document I'll put some placeholder HTML like so:
+To get started with sessions, we first need to create a PHP file. If you have an existing website, you can simply change the file extension from .html to .php. This tells the website server that there is code it needs to run inside this file before sending it to the user. I'm going to start off by creating a basic PHP document called `index.php`. Inside this PHP document I'll put some placeholder HTML like so:
 ```html
 <!-- index.php -->
 <!DOCTYPE html>
@@ -78,12 +78,12 @@ header("location: index.php")
 
 ?>
 ```
-This code is extremely simple. `$_SESSION['name']` creates a session variable called 'stored-name' and sets it equal to the form information pulled from `$_GET` we want the name field's information so `$_SESSION['name']` gets the information from 
+This code is extremely simple. `$_SESSION['name']` creates a session variable called 'stored-name' and sets it equal to the form information pulled from `$_GET`. We want the name field's information so `$_SESSION['name']` gets the information from 
 ```html
 <!-- index.php -->
 <input type="text" name="name" required/>
 ```
-On the next line, `header` simply redirects the user back to `index.php` after that session has been created.
+On the next line, the `header` command simply redirects the user back to `index.php` after that session has been created.
 
 Here's what the page looks like currently:
 ![an image of a blank website with an empty form](/images/1.png)
@@ -118,7 +118,7 @@ Now a question you might ask is: "if we have GET requests why do we need POST? A
 
 They are different in a small but significant way. The main difference is that because GET requests are put inside the address bar, they can be bookmarked in your browser. However POST requests send the information without showing it in the address bar. This is extremely useful if you want to pass data to the server without the user able to see it or bookmark it.
 
-If you were passing a username and password to the server you wouldn't want that to show up in the address bar where it could be seen in the browser history and couldn't be bookmarked.
+If you were passing a username and password to the server you wouldn't want that to show up in the address bar where it could be seen in the browser history or could be bookmarked.
 
 ---
 So let's play around with sessions a bit more. Let's make a new page called `tasks.php`:
@@ -175,7 +175,8 @@ This checks if there is anything in the tasks variable inside the PHP session. I
 As you can probably see, sessions apply to your entire website and can be accessed on any page. So what is our next logical step? Let's see how we can remove a session variable or simply delete everything.
 
 # Deleting PHP Sessions:
-First thing you need to know about PHP sessions is that they have a default TTL (Time to Live) of 30 Minutes [citation needed]. So if you don't want the user to be able to do something to destroy their session you can just have their session expire naturally.
+First thing you need to know about PHP sessions is that they have a default TTL (Time to Live) of about 30 Minutes. So if you don't want the user to be able to do something to destroy their session you can just have their session expire naturally.
+> sessions also expire when the user closes their web browser
 
 With that out of the way lets get started on the last file we need to complete this tutorial.
 
