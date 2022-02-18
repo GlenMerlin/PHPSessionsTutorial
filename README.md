@@ -220,5 +220,10 @@ Now clicking the button should take the user back to index.php and return the si
 
 Congrats on making it to the end of the tutorial! If you want to learn more about PHP and PHP sessions here are some additional resources that can help!
 
-# Additional Resources and Sources:
+# Additional Resources:
+
+<a href="https://www.youtube.com/watch?v=a7_WFUlFS94">PHP in 100 Seconds - Fireship (YouTube)</a>
+
+<a href="https://www.codeleaks.io/increase-session-timeout-in-php/"> How to increase session timeout in php - Codeleaks.io </a>
+
 
