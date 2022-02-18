@@ -19,7 +19,7 @@ session_start();
         }
     ?>
     </p>
-    <form action="name_process.php" method="post">
+    <form action="name_process.php" method="get">
         <input type="text" name="name" required/>
         <button class="login-button">Submit</button>
     </form>
