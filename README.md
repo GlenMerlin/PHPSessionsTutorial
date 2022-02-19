@@ -78,12 +78,12 @@ header("location: index.php")
 
 ?>
 ```
-This code is extremely simple. `$_SESSION['name']` creates a session variable called 'stored-name' and sets it equal to the form information pulled from `$_GET`. We want the name field's information so `$_SESSION['name']` gets the information from 
+This code is extremely simple. `$_SESSION['name']` creates a session variable called 'stored-name' and sets it equal to the form information pulled from `$_GET`. We want the name field's information so `$_SESSION['name']` gets the information from the code below.
 ```html
 <!-- index.php -->
 <input type="text" name="name" required/>
 ```
-On the next line, the `header` command simply redirects the user back to `index.php` after that session has been created.
+The following line in `name_process.php` details the `header` command. The `header` command simply redirects the user back to `index.php` after that session has been created.
 
 Here's what the page looks like currently:
 ![an image of a blank website with an empty form](/images/1.png)
@@ -114,7 +114,7 @@ Now when the user enters something into the field the page displays:
 
 
 # GET vs. POST requests:
-Now a question you might ask is: "if we have GET requests why do we need POST? Are they any different?"
+Now a question you might ask is: "If we have GET requests why do we need POST? Are they any different?"
 
 They are different in a small but significant way. The main difference is that because GET requests are put inside the address bar, they can be bookmarked in your browser. However POST requests send the information without showing it in the address bar. This is extremely useful if you want to pass data to the server without the user able to see it or bookmark it.
 
@@ -175,10 +175,10 @@ This checks if there is anything in the tasks variable inside the PHP session. I
 As you can probably see, sessions apply to your entire website and can be accessed on any page. So what is our next logical step? Let's see how we can remove a session variable or simply delete everything.
 
 # Deleting PHP Sessions:
-First thing you need to know about PHP sessions is that they have a default TTL (Time to Live) of about 30 Minutes. So if you don't want the user to be able to do something to destroy their session you can just have their session expire naturally.
-> sessions also expire when the user closes their web browser
+The first thing you need to know about PHP sessions is that they have a default TTL (Time to Live) of about 30 Minutes. So if you don't want the user to be able to do something to destroy their session you can just have their session expire naturally.
+> Sessions also expire when the user closes their web browser
 
-With that out of the way let's get started on the last file we need to complete this tutorial.
+With that out of the way, let's get started on the last file we need to complete this tutorial.
 
 Let's set up a page where our user can ask to be forgotten. Let's make a page called `forget_me.php`:
 
@@ -225,8 +225,12 @@ Congrats on making it to the end of the tutorial! If you want to learn more abou
 
 # Additional Resources:
 
-<a href="https://www.youtube.com/watch?v=a7_WFUlFS94">PHP in 100 Seconds - Fireship (YouTube)</a>
+<a href="https://www.youtube.com/watch?v=a7_WFUlFS94">PHP in 100 Seconds - Fireship (YouTube)</a> : This Youtube video covers the basics of PHP and why you'd want to use it in a very entertaining "elevator pitch" sort of way.
 
-<a href="https://www.codeleaks.io/increase-session-timeout-in-php/"> How to increase session timeout in php - Codeleaks.io </a>
+<a href="https://www.codeleaks.io/increase-session-timeout-in-php/"> How to increase session timeout in php - Codeleaks.io </a> This site covers a lot of the same material as this tutorial does in a much shorter fashion. It can be helpful as a quick reference but for programmers new to HTML and PHP their examples can be a bit daunting.
 
+<a href="https://www.w3schools.com/php/">PHP Tutorial - W3Schoools</a>: W3Schools is an amazing resource to learn about different programming languages. They offer code snippets and in many cases an interactive code editor so if you're unsure about the behavior of any particular piece of code you can try it in a preconfigured enviornment.
 
+<a href="https://www.geeksforgeeks.org/php-unset-session-variable/">PHP | Unset Sesssion Variable - GeeksforGeeks </a>: Geeks for Geeks is another extremely helpful website when learning to program anything. They cover individual topics in different programming languages with extremely clear and concise examples.
+
+Additionally, if you visit <a href="https://github.com/GlenMerlin/PHPSessionsTutorial/tree/main/src">the src folder </a> for this project I have posted the final versions of all of the files created in this tutorial for you to download. 
